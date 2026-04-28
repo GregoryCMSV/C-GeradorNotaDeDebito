@@ -2,13 +2,13 @@
 <SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="GeradorNotaDeDebito" GeneratedClassName="BusinessConfig">
   <Profiles />
   <Settings>
-    <Setting Name="EMPRESA" Type="System.String" Scope="Application">
+    <Setting Name="EMPRESA" Type="System.String" Scope="User">
       <Value Profile="(Default)" />
     </Setting>
-    <Setting Name="EMPRESA_CNPJ" Type="System.String" Scope="Application">
+    <Setting Name="EMPRESA_CNPJ" Type="System.String" Scope="User">
       <Value Profile="(Default)" />
     </Setting>
-    <Setting Name="EMPRESA_END" Type="System.String" Scope="Application">
+    <Setting Name="EMPRESA_END" Type="System.String" Scope="User">
       <Value Profile="(Default)" />
     </Setting>
   </Settings>

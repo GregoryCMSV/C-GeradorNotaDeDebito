@@ -1,4 +1,5 @@
 using DocumentFormat.OpenXml.Packaging;
+using GeradorNotaDeDebito.Modelos;
 using Spire.Doc;
 using System.Security;
 
@@ -6,8 +7,12 @@ namespace GeradorNotaDeDebito
 {
     public partial class FrmGeradorNota : Form
     {
+
+        private UserConfig uc = null;
+
         public FrmGeradorNota()
         {
+            //Config.Default.Reset();
             InitializeComponent();
         }
 
@@ -15,11 +20,7 @@ namespace GeradorNotaDeDebito
         {
             if (string.IsNullOrEmpty(Config.Default.RAZAO_SOCIAL))
             {
-                tsmiConfigurar.Visible = false;
-                Modelos.UserConfig uc = new Modelos.UserConfig();
-                uc.Dock = DockStyle.Fill;
-                this.Controls.Add(uc);
-                uc.BringToFront();
+                CreateShowUserConfig();
             }
             else
             {
@@ -27,9 +28,27 @@ namespace GeradorNotaDeDebito
             }
         }
 
-        private void tsmiConfigurar_Click(object sender, EventArgs e)
+        private void TsmiConfigurar_Click(object sender, EventArgs e)
         {
+            CreateShowUserConfig();
+        }
 
+        private void CreateShowUserConfig()
+        {
+            if(uc is null)
+            {
+                tsmiConfigurar.Visible = false;
+                uc = new Modelos.UserConfig();
+                uc.Dock = DockStyle.Fill;
+                this.Controls.Add(uc);
+                uc.BringToFront();
+                uc.VisibleChanged += UserConfig_VisibleChanged;
+            }
+            else
+            {
+                uc.BringToFront();
+                uc.Visible = true;
+            }
         }
 
         private void btnPDF_Click(object sender, EventArgs e)
@@ -81,7 +100,7 @@ namespace GeradorNotaDeDebito
 
         private void SubstituirTagsNoOpenXML(string filePath, string numeroNota)
         {
-            DateTime dataAtual = DateTime.Now;
+            //DateTime dataAtual = DateTime.Now;
 
             using (WordprocessingDocument wordDoc = WordprocessingDocument.Open(filePath, true))
             {
@@ -95,16 +114,16 @@ namespace GeradorNotaDeDebito
                 string Escapar(string texto) => SecurityElement.Escape(texto ?? "");
 
                 
-                docText = docText.Replace("{{RAZAO_SOCIAL}}", Escapar(Config.Default.RAZAO_SOCIAL));
-                docText = docText.Replace("{{CNPJ}}", Escapar(Config.Default.CNPJ));
-                docText = docText.Replace("{{END}}", Escapar(Config.Default.END));
-                docText = docText.Replace("{{CEP}}", Escapar(Config.Default.CEP));
-                docText = docText.Replace("{{TEL}}", Escapar(Config.Default.TEL));
-                docText = docText.Replace("{{VALOR}}", Escapar(Config.Default.VALOR));
+                docText = docText.Replace("{{RAZAO_SOCIAL}}", Escapar(txtRazaoSocial.Text));
+                docText = docText.Replace("{{CNPJ}}", Escapar(mtxtCNPJ.Text));
+                docText = docText.Replace("{{END}}", Escapar(txtEnd.Text));
+                docText = docText.Replace("{{CEP}}", Escapar(mtxtCEP.Text));
+                docText = docText.Replace("{{TEL}}", Escapar(mtxtTel.Text));
+                docText = docText.Replace("{{VALOR}}", Escapar(txtValor.Text.Replace("R$","")));
 
-                docText = docText.Replace("{{EMPRESA}}", Escapar(BusinessConfig.Default.EMPRESA));
-                docText = docText.Replace("{{EMPRESA_CNPJ}}", Escapar(BusinessConfig.Default.EMPRESA_CNPJ));
-                docText = docText.Replace("{{EMPRESA_END}}", Escapar(BusinessConfig.Default.EMPRESA_END));
+                docText = docText.Replace("{{EMPRESA}}", Escapar(txtRazaoDestinatario.Text));
+                docText = docText.Replace("{{EMPRESA_CNPJ}}", Escapar(mtxtCNPJDestinatario.Text));
+                docText = docText.Replace("{{EMPRESA_END}}", Escapar(txtEndDestinatario.Text));
 
                 var dataSelecionada = dtpMes.Value;
                 DateTime primeiroDia = new DateTime(dataSelecionada.Year, dataSelecionada.Month, 1);
@@ -113,7 +132,7 @@ namespace GeradorNotaDeDebito
 
                 docText = docText.Replace("{{DATA}}", primeiroDia.ToString("dd/MM/yyyy"));
                 docText = docText.Replace("{{NUM_NOTA}}", numeroNota);
-                docText = docText.Replace("{{MES}}", dataAtual.ToString("MMMM"));
+                docText = docText.Replace("{{MES}}", dataSelecionada.ToString("MMMM"));
                 docText = docText.Replace("{{VENCIMENTO}}", ultimoDia.ToString("dd/MM/yyyy"));
 
                 using (StreamWriter sw = new StreamWriter(wordDoc.MainDocumentPart.GetStream(FileMode.Create)))
@@ -152,7 +171,30 @@ namespace GeradorNotaDeDebito
 
         private void CarregarDadosNaTela()
         {
+            txtRazaoSocial.Text = Config.Default.RAZAO_SOCIAL;
+            mtxtCNPJ.Text = Config.Default.CNPJ;
+            txtEnd.Text = Config.Default.END;
+            mtxtCEP.Text = Config.Default.CEP;
+            mtxtTel.Text = Config.Default.TEL;
+            txtValor.Text = Config.Default.VALOR;
+            txtRazaoDestinatario.Text = BusinessConfig.Default.EMPRESA;
+            txtEndDestinatario.Text = BusinessConfig.Default.EMPRESA_END;
+            mtxtCNPJDestinatario.Text = BusinessConfig.Default.EMPRESA_CNPJ;
             tsmiConfigurar.Visible = true;
+        }
+
+        private void UserConfig_VisibleChanged(object sender, EventArgs e)
+        {
+            dynamic dymSender = sender as dynamic;
+            if (dymSender.Visible)
+            {
+                uc?.ChangeBTNCancelarEnabled();
+                tsmiConfigurar.Visible = false;
+            }
+            else
+            {
+                CarregarDadosNaTela();
+            }
         }
     }
 }

@@ -64,18 +64,21 @@
             // 
             // btnPDF
             // 
-            btnPDF.Location = new Point(743, 47);
+            btnPDF.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+            btnPDF.Location = new Point(784, 53);
             btnPDF.Margin = new Padding(4);
             btnPDF.Name = "btnPDF";
             btnPDF.Size = new Size(96, 32);
-            btnPDF.TabIndex = 0;
+            btnPDF.TabIndex = 11;
             btnPDF.Text = "PDF";
             btnPDF.UseVisualStyleBackColor = true;
             btnPDF.Click += btnPDF_Click;
             // 
             // btnWord
             // 
-            btnWord.Location = new Point(847, 47);
+            btnWord.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+            btnWord.Enabled = false;
+            btnWord.Location = new Point(888, 53);
             btnWord.Margin = new Padding(4);
             btnWord.Name = "btnWord";
             btnWord.Size = new Size(96, 32);
@@ -86,9 +89,10 @@
             // 
             // lblGerar
             // 
+            lblGerar.Anchor = AnchorStyles.Top | AnchorStyles.Right;
             lblGerar.AutoSize = true;
             lblGerar.Font = new Font("Segoe UI", 12F);
-            lblGerar.Location = new Point(683, 53);
+            lblGerar.Location = new Point(724, 59);
             lblGerar.Margin = new Padding(4, 0, 4, 0);
             lblGerar.Name = "lblGerar";
             lblGerar.Size = new Size(52, 21);
@@ -111,7 +115,7 @@
             // 
             lblCNPJ.AutoSize = true;
             lblCNPJ.Font = new Font("Segoe UI", 12F);
-            lblCNPJ.Location = new Point(71, 63);
+            lblCNPJ.Location = new Point(71, 113);
             lblCNPJ.Margin = new Padding(4, 0, 4, 0);
             lblCNPJ.Name = "lblCNPJ";
             lblCNPJ.Size = new Size(49, 21);
@@ -122,7 +126,7 @@
             // 
             lblEnd.AutoSize = true;
             lblEnd.Font = new Font("Segoe UI", 12F);
-            lblEnd.Location = new Point(43, 113);
+            lblEnd.Location = new Point(43, 63);
             lblEnd.Margin = new Padding(4, 0, 4, 0);
             lblEnd.Name = "lblEnd";
             lblEnd.Size = new Size(77, 21);
@@ -133,7 +137,7 @@
             // 
             label5.AutoSize = true;
             label5.Font = new Font("Segoe UI", 12F);
-            label5.Location = new Point(32, 77);
+            label5.Location = new Point(32, 102);
             label5.Margin = new Padding(4, 0, 4, 0);
             label5.Name = "label5";
             label5.Size = new Size(49, 21);
@@ -165,45 +169,48 @@
             // panel1
             // 
             panel1.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
+            panel1.BorderStyle = BorderStyle.FixedSingle;
             panel1.Controls.Add(txtEndDestinatario);
             panel1.Controls.Add(txtRazaoDestinatario);
             panel1.Controls.Add(mtxtCNPJDestinatario);
             panel1.Controls.Add(label10);
             panel1.Controls.Add(label9);
             panel1.Controls.Add(label8);
-            panel1.Location = new Point(12, 441);
+            panel1.Location = new Point(12, 466);
             panel1.Margin = new Padding(4);
             panel1.Name = "panel1";
-            panel1.Size = new Size(984, 196);
+            panel1.Size = new Size(972, 203);
             panel1.TabIndex = 9;
             // 
             // txtEndDestinatario
             // 
-            txtEndDestinatario.Location = new Point(133, 143);
+            txtEndDestinatario.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
+            txtEndDestinatario.Location = new Point(133, 83);
             txtEndDestinatario.Name = "txtEndDestinatario";
-            txtEndDestinatario.Size = new Size(305, 29);
-            txtEndDestinatario.TabIndex = 6;
+            txtEndDestinatario.Size = new Size(740, 29);
+            txtEndDestinatario.TabIndex = 9;
             // 
             // txtRazaoDestinatario
             // 
+            txtRazaoDestinatario.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
             txtRazaoDestinatario.Location = new Point(133, 23);
             txtRazaoDestinatario.Name = "txtRazaoDestinatario";
-            txtRazaoDestinatario.Size = new Size(305, 29);
-            txtRazaoDestinatario.TabIndex = 5;
+            txtRazaoDestinatario.Size = new Size(740, 29);
+            txtRazaoDestinatario.TabIndex = 8;
             // 
             // mtxtCNPJDestinatario
             // 
-            mtxtCNPJDestinatario.Location = new Point(133, 83);
-            mtxtCNPJDestinatario.Mask = "00.000.000/0000-00";
+            mtxtCNPJDestinatario.Location = new Point(133, 143);
+            mtxtCNPJDestinatario.Mask = "00\\.000\\.000/0000-00";
             mtxtCNPJDestinatario.Name = "mtxtCNPJDestinatario";
-            mtxtCNPJDestinatario.Size = new Size(305, 29);
-            mtxtCNPJDestinatario.TabIndex = 4;
+            mtxtCNPJDestinatario.Size = new Size(156, 29);
+            mtxtCNPJDestinatario.TabIndex = 10;
             // 
             // label10
             // 
             label10.AutoSize = true;
             label10.Font = new Font("Segoe UI", 12F);
-            label10.Location = new Point(43, 146);
+            label10.Location = new Point(43, 86);
             label10.Margin = new Padding(4, 0, 4, 0);
             label10.Name = "label10";
             label10.Size = new Size(77, 21);
@@ -214,7 +221,7 @@
             // 
             label9.AutoSize = true;
             label9.Font = new Font("Segoe UI", 12F);
-            label9.Location = new Point(71, 86);
+            label9.Location = new Point(71, 146);
             label9.Margin = new Padding(4, 0, 4, 0);
             label9.Name = "label9";
             label9.Size = new Size(49, 21);
@@ -235,11 +242,11 @@
             // lblDest
             // 
             lblDest.AutoSize = true;
-            lblDest.Font = new Font("Segoe UI", 12F);
-            lblDest.Location = new Point(21, 416);
+            lblDest.Font = new Font("Segoe UI", 12F, FontStyle.Bold);
+            lblDest.Location = new Point(21, 441);
             lblDest.Margin = new Padding(4, 0, 4, 0);
             lblDest.Name = "lblDest";
-            lblDest.Size = new Size(94, 21);
+            lblDest.Size = new Size(104, 21);
             lblDest.TabIndex = 3;
             lblDest.Text = "Destinatário";
             // 
@@ -249,7 +256,7 @@
             mtxtTel.Mask = "(00) 90000-0000";
             mtxtTel.Name = "mtxtTel";
             mtxtTel.Size = new Size(156, 29);
-            mtxtTel.TabIndex = 11;
+            mtxtTel.TabIndex = 7;
             // 
             // mtxtCEP
             // 
@@ -257,44 +264,46 @@
             mtxtCEP.Mask = "00000-000";
             mtxtCEP.Name = "mtxtCEP";
             mtxtCEP.Size = new Size(156, 29);
-            mtxtCEP.TabIndex = 12;
+            mtxtCEP.TabIndex = 6;
             // 
             // dtpMes
             // 
             dtpMes.CustomFormat = "MMMM/yyyy";
             dtpMes.Format = DateTimePickerFormat.Custom;
-            dtpMes.Location = new Point(92, 28);
+            dtpMes.Location = new Point(92, 53);
             dtpMes.Name = "dtpMes";
             dtpMes.Size = new Size(200, 29);
-            dtpMes.TabIndex = 13;
+            dtpMes.TabIndex = 1;
             // 
             // mtxtCNPJ
             // 
-            mtxtCNPJ.Location = new Point(133, 60);
-            mtxtCNPJ.Mask = "00.000.000/0000-00";
+            mtxtCNPJ.Location = new Point(133, 110);
+            mtxtCNPJ.Mask = "00\\.000\\.000/0000-00";
             mtxtCNPJ.Name = "mtxtCNPJ";
-            mtxtCNPJ.Size = new Size(305, 29);
-            mtxtCNPJ.TabIndex = 14;
+            mtxtCNPJ.Size = new Size(156, 29);
+            mtxtCNPJ.TabIndex = 5;
             // 
             // txtEnd
             // 
-            txtEnd.Location = new Point(133, 110);
+            txtEnd.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
+            txtEnd.Location = new Point(133, 60);
             txtEnd.Name = "txtEnd";
-            txtEnd.Size = new Size(305, 29);
-            txtEnd.TabIndex = 15;
+            txtEnd.Size = new Size(740, 29);
+            txtEnd.TabIndex = 4;
             // 
             // txtRazaoSocial
             // 
+            txtRazaoSocial.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
             txtRazaoSocial.Location = new Point(133, 10);
             txtRazaoSocial.Name = "txtRazaoSocial";
-            txtRazaoSocial.Size = new Size(305, 29);
-            txtRazaoSocial.TabIndex = 16;
+            txtRazaoSocial.Size = new Size(740, 29);
+            txtRazaoSocial.TabIndex = 3;
             // 
             // label1
             // 
             label1.AutoSize = true;
             label1.Font = new Font("Segoe UI", 12F);
-            label1.Location = new Point(39, 34);
+            label1.Location = new Point(39, 59);
             label1.Margin = new Padding(4, 0, 4, 0);
             label1.Name = "label1";
             label1.Size = new Size(42, 21);
@@ -304,6 +313,8 @@
             // panel2
             // 
             panel2.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
+            panel2.BackColor = SystemColors.ButtonFace;
+            panel2.BorderStyle = BorderStyle.FixedSingle;
             panel2.Controls.Add(lblRazaoSocial);
             panel2.Controls.Add(txtRazaoSocial);
             panel2.Controls.Add(txtEnd);
@@ -314,19 +325,19 @@
             panel2.Controls.Add(lblEnd);
             panel2.Controls.Add(lblCEP);
             panel2.Controls.Add(lblTelefone);
-            panel2.Location = new Point(12, 142);
+            panel2.Location = new Point(12, 167);
             panel2.Name = "panel2";
-            panel2.Size = new Size(984, 250);
-            panel2.TabIndex = 18;
+            panel2.Size = new Size(972, 257);
+            panel2.TabIndex = 3;
             // 
             // label2
             // 
             label2.AutoSize = true;
-            label2.Font = new Font("Segoe UI", 12F);
-            label2.Location = new Point(21, 118);
+            label2.Font = new Font("Segoe UI", 12F, FontStyle.Bold);
+            label2.Location = new Point(21, 143);
             label2.Margin = new Padding(4, 0, 4, 0);
             label2.Name = "label2";
-            label2.Size = new Size(71, 21);
+            label2.Size = new Size(79, 21);
             label2.TabIndex = 7;
             label2.Text = "Emitente";
             // 
@@ -344,21 +355,21 @@
             tsmiConfigurar.Name = "tsmiConfigurar";
             tsmiConfigurar.Size = new Size(76, 20);
             tsmiConfigurar.Text = "Configurar";
-            tsmiConfigurar.Click += tsmiConfigurar_Click;
+            tsmiConfigurar.Click += TsmiConfigurar_Click;
             // 
             // txtValor
             // 
-            txtValor.Location = new Point(93, 74);
+            txtValor.Location = new Point(93, 99);
             txtValor.Name = "txtValor";
             txtValor.Size = new Size(199, 29);
-            txtValor.TabIndex = 20;
+            txtValor.TabIndex = 2;
             txtValor.TextChanged += txtValor_TextChanged;
             // 
             // FrmGeradorNota
             // 
             AutoScaleDimensions = new SizeF(9F, 21F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(1008, 653);
+            ClientSize = new Size(1008, 761);
             Controls.Add(txtValor);
             Controls.Add(label2);
             Controls.Add(panel2);
@@ -374,6 +385,7 @@
             Font = new Font("Segoe UI", 12F);
             MainMenuStrip = menuStrip1;
             Margin = new Padding(4);
+            MinimumSize = new Size(1024, 800);
             Name = "FrmGeradorNota";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "Gerar Nota de Debito";

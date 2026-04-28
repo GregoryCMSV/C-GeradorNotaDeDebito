@@ -23,30 +23,39 @@ namespace GeradorNotaDeDebito {
             }
         }
         
-        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("")]
         public string EMPRESA {
             get {
                 return ((string)(this["EMPRESA"]));
             }
+            set {
+                this["EMPRESA"] = value;
+            }
         }
         
-        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("")]
         public string EMPRESA_CNPJ {
             get {
                 return ((string)(this["EMPRESA_CNPJ"]));
             }
+            set {
+                this["EMPRESA_CNPJ"] = value;
+            }
         }
         
-        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("")]
         public string EMPRESA_END {
             get {
                 return ((string)(this["EMPRESA_END"]));
+            }
+            set {
+                this["EMPRESA_END"] = value;
             }
         }
     }

@@ -52,53 +52,59 @@
             label9 = new Label();
             label8 = new Label();
             label5 = new Label();
+            lbl_Config = new Label();
             panel2.SuspendLayout();
             panel1.SuspendLayout();
             SuspendLayout();
             // 
             // btnSalvar
             // 
+            btnSalvar.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
             btnSalvar.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            btnSalvar.Location = new Point(335, 589);
+            btnSalvar.Location = new Point(335, 643);
             btnSalvar.Name = "btnSalvar";
             btnSalvar.Size = new Size(95, 38);
-            btnSalvar.TabIndex = 25;
+            btnSalvar.TabIndex = 10;
             btnSalvar.Text = "Salvar";
             btnSalvar.UseVisualStyleBackColor = true;
             btnSalvar.Click += BtnSalvar_Click;
             // 
             // btnCancelar
             // 
+            btnCancelar.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
             btnCancelar.Enabled = false;
             btnCancelar.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            btnCancelar.Location = new Point(452, 589);
+            btnCancelar.Location = new Point(452, 643);
             btnCancelar.Name = "btnCancelar";
             btnCancelar.Size = new Size(95, 38);
-            btnCancelar.TabIndex = 26;
+            btnCancelar.TabIndex = 11;
             btnCancelar.Text = "Cancelar";
             btnCancelar.UseVisualStyleBackColor = true;
+            btnCancelar.Click += btnCancelar_Click;
             // 
             // txtValor
             // 
-            txtValor.Location = new Point(70, 536);
+            txtValor.Location = new Point(136, 593);
             txtValor.Name = "txtValor";
             txtValor.Size = new Size(199, 23);
-            txtValor.TabIndex = 32;
+            txtValor.TabIndex = 9;
+            txtValor.TextChanged += txtValor_TextChanged;
             // 
             // label2
             // 
             label2.AutoSize = true;
-            label2.Font = new Font("Segoe UI", 12F);
-            label2.Location = new Point(8, 0);
+            label2.Font = new Font("Segoe UI", 12F, FontStyle.Bold);
+            label2.Location = new Point(12, 56);
             label2.Margin = new Padding(4, 0, 4, 0);
             label2.Name = "label2";
-            label2.Size = new Size(71, 21);
+            label2.Size = new Size(79, 21);
             label2.TabIndex = 29;
             label2.Text = "Emitente";
             // 
             // panel2
             // 
             panel2.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
+            panel2.BorderStyle = BorderStyle.FixedSingle;
             panel2.Controls.Add(lblRazaoSocial);
             panel2.Controls.Add(txtRazaoSocial);
             panel2.Controls.Add(txtEnd);
@@ -109,10 +115,10 @@
             panel2.Controls.Add(lblEnd);
             panel2.Controls.Add(lblCEP);
             panel2.Controls.Add(lblTelefone);
-            panel2.Location = new Point(-1, 24);
+            panel2.Location = new Point(3, 80);
             panel2.Name = "panel2";
             panel2.Size = new Size(557, 250);
-            panel2.TabIndex = 31;
+            panel2.TabIndex = 1;
             // 
             // lblRazaoSocial
             // 
@@ -127,17 +133,19 @@
             // 
             // txtRazaoSocial
             // 
+            txtRazaoSocial.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
             txtRazaoSocial.Location = new Point(133, 10);
             txtRazaoSocial.Name = "txtRazaoSocial";
             txtRazaoSocial.Size = new Size(305, 23);
-            txtRazaoSocial.TabIndex = 16;
+            txtRazaoSocial.TabIndex = 1;
             // 
             // txtEnd
             // 
-            txtEnd.Location = new Point(133, 110);
+            txtEnd.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
+            txtEnd.Location = new Point(133, 65);
             txtEnd.Name = "txtEnd";
             txtEnd.Size = new Size(305, 23);
-            txtEnd.TabIndex = 15;
+            txtEnd.TabIndex = 2;
             // 
             // mtxtTel
             // 
@@ -145,7 +153,7 @@
             mtxtTel.Mask = "(00) 90000-0000";
             mtxtTel.Name = "mtxtTel";
             mtxtTel.Size = new Size(156, 23);
-            mtxtTel.TabIndex = 11;
+            mtxtTel.TabIndex = 5;
             // 
             // mtxtCEP
             // 
@@ -153,13 +161,13 @@
             mtxtCEP.Mask = "00000-000";
             mtxtCEP.Name = "mtxtCEP";
             mtxtCEP.Size = new Size(156, 23);
-            mtxtCEP.TabIndex = 12;
+            mtxtCEP.TabIndex = 4;
             // 
             // lblCNPJ
             // 
             lblCNPJ.AutoSize = true;
             lblCNPJ.Font = new Font("Segoe UI", 12F);
-            lblCNPJ.Location = new Point(71, 63);
+            lblCNPJ.Location = new Point(71, 113);
             lblCNPJ.Margin = new Padding(4, 0, 4, 0);
             lblCNPJ.Name = "lblCNPJ";
             lblCNPJ.Size = new Size(49, 21);
@@ -168,17 +176,17 @@
             // 
             // mtxtCNPJ
             // 
-            mtxtCNPJ.Location = new Point(133, 60);
-            mtxtCNPJ.Mask = "00.000.000/0000-00";
+            mtxtCNPJ.Location = new Point(133, 115);
+            mtxtCNPJ.Mask = "00\\.000\\.000/0000-00";
             mtxtCNPJ.Name = "mtxtCNPJ";
             mtxtCNPJ.Size = new Size(305, 23);
-            mtxtCNPJ.TabIndex = 14;
+            mtxtCNPJ.TabIndex = 3;
             // 
             // lblEnd
             // 
             lblEnd.AutoSize = true;
             lblEnd.Font = new Font("Segoe UI", 12F);
-            lblEnd.Location = new Point(43, 113);
+            lblEnd.Location = new Point(43, 63);
             lblEnd.Margin = new Padding(4, 0, 4, 0);
             lblEnd.Name = "lblEnd";
             lblEnd.Size = new Size(77, 21);
@@ -210,56 +218,57 @@
             // lblDest
             // 
             lblDest.AutoSize = true;
-            lblDest.Font = new Font("Segoe UI", 12F);
-            lblDest.Location = new Point(8, 298);
+            lblDest.Font = new Font("Segoe UI", 12F, FontStyle.Bold);
+            lblDest.Location = new Point(12, 354);
             lblDest.Margin = new Padding(4, 0, 4, 0);
             lblDest.Name = "lblDest";
-            lblDest.Size = new Size(94, 21);
+            lblDest.Size = new Size(104, 21);
             lblDest.TabIndex = 27;
             lblDest.Text = "Destinatário";
             // 
             // panel1
             // 
             panel1.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
+            panel1.BorderStyle = BorderStyle.FixedSingle;
             panel1.Controls.Add(txtEndDestinatario);
             panel1.Controls.Add(txtRazaoDestinatario);
             panel1.Controls.Add(mtxtCNPJDestinatario);
             panel1.Controls.Add(label10);
             panel1.Controls.Add(label9);
             panel1.Controls.Add(label8);
-            panel1.Location = new Point(-1, 323);
+            panel1.Location = new Point(3, 379);
             panel1.Margin = new Padding(4);
             panel1.Name = "panel1";
             panel1.Size = new Size(557, 196);
-            panel1.TabIndex = 30;
+            panel1.TabIndex = 6;
             // 
             // txtEndDestinatario
             // 
             txtEndDestinatario.Location = new Point(133, 143);
             txtEndDestinatario.Name = "txtEndDestinatario";
             txtEndDestinatario.Size = new Size(305, 23);
-            txtEndDestinatario.TabIndex = 6;
+            txtEndDestinatario.TabIndex = 8;
             // 
             // txtRazaoDestinatario
             // 
             txtRazaoDestinatario.Location = new Point(133, 23);
             txtRazaoDestinatario.Name = "txtRazaoDestinatario";
             txtRazaoDestinatario.Size = new Size(305, 23);
-            txtRazaoDestinatario.TabIndex = 5;
+            txtRazaoDestinatario.TabIndex = 6;
             // 
             // mtxtCNPJDestinatario
             // 
             mtxtCNPJDestinatario.Location = new Point(133, 83);
-            mtxtCNPJDestinatario.Mask = "00.000.000/0000-00";
+            mtxtCNPJDestinatario.Mask = "00\\.000\\.000/0000-00";
             mtxtCNPJDestinatario.Name = "mtxtCNPJDestinatario";
             mtxtCNPJDestinatario.Size = new Size(305, 23);
-            mtxtCNPJDestinatario.TabIndex = 4;
+            mtxtCNPJDestinatario.TabIndex = 7;
             // 
             // label10
             // 
             label10.AutoSize = true;
             label10.Font = new Font("Segoe UI", 12F);
-            label10.Location = new Point(43, 146);
+            label10.Location = new Point(43, 86);
             label10.Margin = new Padding(4, 0, 4, 0);
             label10.Name = "label10";
             label10.Size = new Size(77, 21);
@@ -270,7 +279,7 @@
             // 
             label9.AutoSize = true;
             label9.Font = new Font("Segoe UI", 12F);
-            label9.Location = new Point(71, 86);
+            label9.Location = new Point(71, 146);
             label9.Margin = new Padding(4, 0, 4, 0);
             label9.Name = "label9";
             label9.Size = new Size(49, 21);
@@ -292,17 +301,30 @@
             // 
             label5.AutoSize = true;
             label5.Font = new Font("Segoe UI", 12F);
-            label5.Location = new Point(9, 539);
+            label5.Location = new Point(13, 595);
             label5.Margin = new Padding(4, 0, 4, 0);
             label5.Name = "label5";
-            label5.Size = new Size(49, 21);
+            label5.Size = new Size(101, 21);
             label5.TabIndex = 28;
-            label5.Text = "Valor:";
+            label5.Text = "Valor Padrão:";
+            // 
+            // lbl_Config
+            // 
+            lbl_Config.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
+            lbl_Config.AutoSize = true;
+            lbl_Config.Font = new Font("Segoe UI", 14.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            lbl_Config.Location = new Point(13, 19);
+            lbl_Config.Name = "lbl_Config";
+            lbl_Config.Size = new Size(257, 25);
+            lbl_Config.TabIndex = 33;
+            lbl_Config.Text = "Configurar Valores Padrões";
+            lbl_Config.TextAlign = ContentAlignment.MiddleCenter;
             // 
             // UserConfig
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
+            Controls.Add(lbl_Config);
             Controls.Add(txtValor);
             Controls.Add(label2);
             Controls.Add(panel2);
@@ -312,7 +334,7 @@
             Controls.Add(btnCancelar);
             Controls.Add(btnSalvar);
             Name = "UserConfig";
-            Size = new Size(571, 646);
+            Size = new Size(571, 700);
             panel2.ResumeLayout(false);
             panel2.PerformLayout();
             panel1.ResumeLayout(false);
@@ -346,5 +368,6 @@
         private Label label9;
         private Label label8;
         private Label label5;
+        private Label lbl_Config;
     }
 }
