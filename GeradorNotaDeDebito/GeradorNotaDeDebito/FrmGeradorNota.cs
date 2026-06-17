@@ -1,4 +1,5 @@
 using DocumentFormat.OpenXml.Packaging;
+using GeradorNotaDeDebito.Configs;
 using GeradorNotaDeDebito.Modelos;
 using Spire.Doc;
 using System.Security;
@@ -91,7 +92,6 @@ namespace GeradorNotaDeDebito
                 }
             }
         }
-
 
         private string GetNFNumber()
         {

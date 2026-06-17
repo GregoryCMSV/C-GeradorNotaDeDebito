@@ -1,4 +1,8 @@
 ﻿using DocumentFormat.OpenXml.Office2016.Drawing.Command;
+using GeradorNotaDeDebito.Configs;
+using GeradorNotaDeDebito.DTOs;
+using GeradorNotaDeDebito.Services;
+using GeradorNotaDeDebito.Utils;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -13,10 +17,14 @@ namespace GeradorNotaDeDebito.Modelos
 {
     public partial class UserConfig : UserControl
     {
+
+        private CNPJService _cnpjService;
+
         public UserConfig()
         {
             InitializeComponent();
             GetValues();
+            _cnpjService = new CNPJService();
         }
 
         private void GetValues()
@@ -43,7 +51,7 @@ namespace GeradorNotaDeDebito.Modelos
             Config.Default.END = txtEnd.Text;
             Config.Default.CEP = mtxtCEP.Text;
             Config.Default.TEL = mtxtTel.Text;
-            Config.Default.VALOR = txtValor.Text.Replace("R$","").Trim();
+            Config.Default.VALOR = txtValor.Text.Replace("R$", "").Trim();
 
             Config.Default.Save();
 
@@ -59,8 +67,8 @@ namespace GeradorNotaDeDebito.Modelos
 
         private bool ValidateFields()
         {
-            if(ShowAlertIfNull(txtRazaoSocial.Text, "A Razão Social do emitente é obrigatória.")) return false;
-            if(ShowAlertIfNull(txtEnd.Text, "O Endereço do emitente é obrigatório.")) return false ;
+            if (ShowAlertIfNull(txtRazaoSocial.Text, "A Razão Social do emitente é obrigatória.")) return false;
+            if (ShowAlertIfNull(txtEnd.Text, "O Endereço do emitente é obrigatório.")) return false;
             string cepNumeros = new string(mtxtCEP.Text.Where(char.IsDigit).ToArray());
             if (cepNumeros.Length != 8)
             {
@@ -73,12 +81,12 @@ namespace GeradorNotaDeDebito.Modelos
                 MessageBox.Show("O Telefone deve conter no mínimo 10 dígitos (incluindo DDD).", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return true;
             }
-            if(ShowAlertIfCNPJNotValid(mtxtCNPJ.Text, "O CNPJ do emitente é inválido.")) return false;
-            if(ShowAlertIfNull(txtRazaoDestinatario.Text, "A Razão Social do destinatário é obrigatória.")) return false;
-            if(ShowAlertIfNull(txtEndDestinatario.Text, "O Endereço do destinatário obrigatório.")) return false;
-            if(ShowAlertIfCNPJNotValid(mtxtCNPJDestinatario.Text, "O CNPJ do destinatário é inválido.")) return false;
-            if(ShowAlertIfNull(txtValor.Text, "O Valor é obrigatório.")) return false;
-            
+            if (ShowAlertIfCNPJNotValid(mtxtCNPJ.Text, "O CNPJ do emitente é inválido.")) return false;
+            if (ShowAlertIfNull(txtRazaoDestinatario.Text, "A Razão Social do destinatário é obrigatória.")) return false;
+            if (ShowAlertIfNull(txtEndDestinatario.Text, "O Endereço do destinatário obrigatório.")) return false;
+            if (ShowAlertIfCNPJNotValid(mtxtCNPJDestinatario.Text, "O CNPJ do destinatário é inválido.")) return false;
+            if (ShowAlertIfNull(txtValor.Text, "O Valor é obrigatório.")) return false;
+
             return true;
         }
 
@@ -185,6 +193,61 @@ namespace GeradorNotaDeDebito.Modelos
         public void ChangeBTNCancelarEnabled()
         {
             btnCancelar.Enabled = !string.IsNullOrEmpty(txtRazaoSocial.Text);
+        }
+
+        private async Task<CnpjApiDto> FindCnpj(string cnpj)
+        {
+            try
+            {
+                if (cnpj.Length < 14)
+                    return null;
+
+                (CnpjApiDto cnpjDto, string message) = await _cnpjService.GetCnpjInfo(cnpj);
+
+                if (cnpjDto is null) MessageBox.Show(message, "Erro");
+
+                return cnpjDto;
+            }
+            catch (Exception ex)
+            {
+                return null;
+            }
+
+        }
+
+        private async void mtxtCNPJ_Leave(object sender, EventArgs e)
+        {
+            var cnpj = await FindCnpj(mtxtCNPJ.Text);
+            if (cnpj is null) return;
+
+            txtRazaoSocial.Text = cnpj.RazaoSocial;
+            mtxtCEP.Text = cnpj.Cep;
+            var telefone = cnpj.Telefones.FirstOrDefault();
+            mtxtTel.Text = $"{telefone.Ddd}{telefone.Numero}";
+            txtEnd.Text = GetEndereco(cnpj);
+        }
+
+        private async void mtxtCNPJDestinatario_Leave(object sender, EventArgs e)
+        {
+            var cnpj = await FindCnpj(mtxtCNPJDestinatario.Text);
+            if (cnpj is null) return;
+            txtRazaoDestinatario.Text = cnpj.RazaoSocial;
+            txtEndDestinatario.Text = GetEndereco(cnpj);
+        }
+
+        private string GetEndereco(CnpjApiDto cnpj)
+        {
+            return $"{cnpj.TipoLogradouro} {cnpj.Logradouro}, nº {cnpj.Numero} - {cnpj.Complemento}";
+        }
+
+        private void mtxtTel_Enter(object sender, EventArgs e)
+        {
+            Utils.Utils.SetDefaultMask(mtxtTel);
+        }
+
+        private void mtxtTel_Leave(object sender, EventArgs e)
+        {
+            Utils.Utils.ValidateTelMask(mtxtTel);
         }
     }
 }

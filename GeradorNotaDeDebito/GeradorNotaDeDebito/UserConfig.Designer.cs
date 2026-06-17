@@ -149,14 +149,18 @@
             // 
             // mtxtTel
             // 
+            mtxtTel.HidePromptOnLeave = true;
             mtxtTel.Location = new Point(133, 210);
             mtxtTel.Mask = "(00) 90000-0000";
             mtxtTel.Name = "mtxtTel";
             mtxtTel.Size = new Size(156, 23);
             mtxtTel.TabIndex = 5;
+            mtxtTel.Enter += mtxtTel_Enter;
+            mtxtTel.Leave += mtxtTel_Leave;
             // 
             // mtxtCEP
             // 
+            mtxtCEP.HidePromptOnLeave = true;
             mtxtCEP.Location = new Point(133, 160);
             mtxtCEP.Mask = "00000-000";
             mtxtCEP.Name = "mtxtCEP";
@@ -176,11 +180,13 @@
             // 
             // mtxtCNPJ
             // 
+            mtxtCNPJ.HidePromptOnLeave = true;
             mtxtCNPJ.Location = new Point(133, 115);
             mtxtCNPJ.Mask = "00\\.000\\.000/0000-00";
             mtxtCNPJ.Name = "mtxtCNPJ";
             mtxtCNPJ.Size = new Size(305, 23);
             mtxtCNPJ.TabIndex = 3;
+            mtxtCNPJ.Leave += mtxtCNPJ_Leave;
             // 
             // lblEnd
             // 
@@ -263,6 +269,7 @@
             mtxtCNPJDestinatario.Name = "mtxtCNPJDestinatario";
             mtxtCNPJDestinatario.Size = new Size(305, 23);
             mtxtCNPJDestinatario.TabIndex = 7;
+            mtxtCNPJDestinatario.Leave += mtxtCNPJDestinatario_Leave;
             // 
             // label10
             // 
