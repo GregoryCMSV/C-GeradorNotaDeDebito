@@ -25,6 +25,7 @@ namespace GeradorNotaDeDebito.Modelos
             InitializeComponent();
             GetValues();
             _cnpjService = new CNPJService();
+            Utils.Utils.ValidateTelMask(mtxtTel);
         }
 
         private void GetValues()
@@ -92,74 +93,22 @@ namespace GeradorNotaDeDebito.Modelos
 
         private bool ShowAlertIfNull(string text, string message)
         {
-            if (string.IsNullOrWhiteSpace(txtValor.Text))
+            if (string.IsNullOrWhiteSpace(text))
             {
                 MessageBox.Show(message, "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return true;
             }
             return false;
         }
+
         private bool ShowAlertIfCNPJNotValid(string cnpj, string message)
         {
-            if (!ValidarCNPJ(cnpj))
+            if (!_cnpjService.ValidarCNPJ(cnpj))
             {
                 MessageBox.Show(message, "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return true;
             }
             return false;
-        }
-
-        private bool ValidarCNPJ(string cnpj)
-        {
-            cnpj = cnpj.Trim();
-            cnpj = cnpj.Replace(".", "").Replace("-", "").Replace("/", "");
-
-            if (cnpj.Length != 14)
-                return false;
-
-            bool todosIguais = true;
-            for (int i = 1; i < cnpj.Length; i++)
-            {
-                if (cnpj[i] != cnpj[0])
-                {
-                    todosIguais = false;
-                    break;
-                }
-            }
-            if (todosIguais) return false;
-
-            int[] multiplicador1 = new int[12] { 5, 4, 3, 2, 9, 8, 7, 6, 5, 4, 3, 2 };
-            int[] multiplicador2 = new int[13] { 6, 5, 4, 3, 2, 9, 8, 7, 6, 5, 4, 3, 2 };
-
-            string tempCnpj = cnpj.Substring(0, 12);
-            int soma = 0;
-
-            for (int i = 0; i < 12; i++)
-                soma += int.Parse(tempCnpj[i].ToString()) * multiplicador1[i];
-
-            int resto = (soma % 11);
-            if (resto < 2)
-                resto = 0;
-            else
-                resto = 11 - resto;
-
-            string digito = resto.ToString();
-
-            tempCnpj = tempCnpj + digito;
-            soma = 0;
-
-            for (int i = 0; i < 13; i++)
-                soma += int.Parse(tempCnpj[i].ToString()) * multiplicador2[i];
-
-            resto = (soma % 11);
-            if (resto < 2)
-                resto = 0;
-            else
-                resto = 11 - resto;
-
-            digito = digito + resto.ToString();
-
-            return cnpj.EndsWith(digito);
         }
 
         private void btnCancelar_Click(object sender, EventArgs e)
@@ -225,6 +174,7 @@ namespace GeradorNotaDeDebito.Modelos
             var telefone = cnpj.Telefones.FirstOrDefault();
             mtxtTel.Text = $"{telefone.Ddd}{telefone.Numero}";
             txtEnd.Text = GetEndereco(cnpj);
+            Utils.Utils.ValidateTelMask(mtxtTel);
         }
 
         private async void mtxtCNPJDestinatario_Leave(object sender, EventArgs e)
@@ -237,7 +187,7 @@ namespace GeradorNotaDeDebito.Modelos
 
         private string GetEndereco(CnpjApiDto cnpj)
         {
-            return $"{cnpj.TipoLogradouro} {cnpj.Logradouro}, nº {cnpj.Numero} - {cnpj.Complemento}";
+            return $"{cnpj.TipoLogradouro} {cnpj.Logradouro}, nº {cnpj.Numero} {(!string.IsNullOrWhiteSpace(cnpj.Complemento) ? "-" + cnpj.Complemento : "")}";
         }
 
         private void mtxtTel_Enter(object sender, EventArgs e)
@@ -249,6 +199,8 @@ namespace GeradorNotaDeDebito.Modelos
         {
             Utils.Utils.ValidateTelMask(mtxtTel);
         }
+
+
     }
 }
 

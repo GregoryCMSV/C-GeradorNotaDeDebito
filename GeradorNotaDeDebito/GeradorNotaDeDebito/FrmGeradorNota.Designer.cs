@@ -200,10 +200,11 @@
             // 
             // mtxtCNPJDestinatario
             // 
+            mtxtCNPJDestinatario.HidePromptOnLeave = true;
             mtxtCNPJDestinatario.Location = new Point(133, 143);
-            mtxtCNPJDestinatario.Mask = "00\\.000\\.000/0000-00";
+            mtxtCNPJDestinatario.Mask = "AA\\.AAA\\.AAA/AAAA-00";
             mtxtCNPJDestinatario.Name = "mtxtCNPJDestinatario";
-            mtxtCNPJDestinatario.Size = new Size(156, 29);
+            mtxtCNPJDestinatario.Size = new Size(225, 29);
             mtxtCNPJDestinatario.TabIndex = 10;
             // 
             // label10
@@ -252,11 +253,15 @@
             // 
             // mtxtTel
             // 
+            mtxtTel.HidePromptOnLeave = true;
             mtxtTel.Location = new Point(133, 210);
             mtxtTel.Mask = "(00) 90000-0000";
             mtxtTel.Name = "mtxtTel";
             mtxtTel.Size = new Size(156, 29);
             mtxtTel.TabIndex = 7;
+            mtxtTel.TextChanged += mtxtTel_TextChanged;
+            mtxtTel.Enter += mtxtTel_Enter;
+            mtxtTel.Leave += mtxtTel_Leave;
             // 
             // mtxtCEP
             // 
@@ -277,10 +282,11 @@
             // 
             // mtxtCNPJ
             // 
+            mtxtCNPJ.HidePromptOnLeave = true;
             mtxtCNPJ.Location = new Point(133, 110);
-            mtxtCNPJ.Mask = "00\\.000\\.000/0000-00";
+            mtxtCNPJ.Mask = "AA\\.AAA\\.AAA/AAAA-00";
             mtxtCNPJ.Name = "mtxtCNPJ";
-            mtxtCNPJ.Size = new Size(156, 29);
+            mtxtCNPJ.Size = new Size(225, 29);
             mtxtCNPJ.TabIndex = 5;
             // 
             // txtEnd
@@ -369,7 +375,7 @@
             // 
             AutoScaleDimensions = new SizeF(9F, 21F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(1008, 761);
+            ClientSize = new Size(1008, 749);
             Controls.Add(txtValor);
             Controls.Add(label2);
             Controls.Add(panel2);
@@ -385,7 +391,7 @@
             Font = new Font("Segoe UI", 12F);
             MainMenuStrip = menuStrip1;
             Margin = new Padding(4);
-            MinimumSize = new Size(1024, 800);
+            MinimumSize = new Size(1024, 726);
             Name = "FrmGeradorNota";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "Gerar Nota de Debito";

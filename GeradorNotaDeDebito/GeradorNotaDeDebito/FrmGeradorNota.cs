@@ -15,6 +15,7 @@ namespace GeradorNotaDeDebito
         {
             //Config.Default.Reset();
             InitializeComponent();
+            Utils.Utils.ValidateTelMask(mtxtTel);
         }
 
         private void FrmGeradorNota_Load(object sender, EventArgs e)
@@ -36,7 +37,7 @@ namespace GeradorNotaDeDebito
 
         private void CreateShowUserConfig()
         {
-            if(uc is null)
+            if (uc is null)
             {
                 tsmiConfigurar.Visible = false;
                 uc = new Modelos.UserConfig();
@@ -113,13 +114,13 @@ namespace GeradorNotaDeDebito
 
                 string Escapar(string texto) => SecurityElement.Escape(texto ?? "");
 
-                
+
                 docText = docText.Replace("{{RAZAO_SOCIAL}}", Escapar(txtRazaoSocial.Text));
                 docText = docText.Replace("{{CNPJ}}", Escapar(mtxtCNPJ.Text));
                 docText = docText.Replace("{{END}}", Escapar(txtEnd.Text));
                 docText = docText.Replace("{{CEP}}", Escapar(mtxtCEP.Text));
                 docText = docText.Replace("{{TEL}}", Escapar(mtxtTel.Text));
-                docText = docText.Replace("{{VALOR}}", Escapar(txtValor.Text.Replace("R$","")));
+                docText = docText.Replace("{{VALOR}}", Escapar(txtValor.Text.Replace("R$", "")));
 
                 docText = docText.Replace("{{EMPRESA}}", Escapar(txtRazaoDestinatario.Text));
                 docText = docText.Replace("{{EMPRESA_CNPJ}}", Escapar(mtxtCNPJDestinatario.Text));
@@ -195,6 +196,21 @@ namespace GeradorNotaDeDebito
             {
                 CarregarDadosNaTela();
             }
+        }
+
+        private void mtxtTel_TextChanged(object sender, EventArgs e)
+        {
+            Utils.Utils.ValidateTelMask(mtxtTel);
+        }
+
+        private void mtxtTel_Enter(object sender, EventArgs e)
+        {
+            Utils.Utils.SetDefaultMask(mtxtTel);
+        }
+
+        private void mtxtTel_Leave(object sender, EventArgs e)
+        {
+            Utils.Utils.ValidateTelMask(mtxtTel);
         }
     }
 }
