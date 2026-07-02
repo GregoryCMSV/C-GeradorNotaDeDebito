@@ -187,7 +187,7 @@ namespace GeradorNotaDeDebito.Modelos
 
         private string GetEndereco(CnpjApiDto cnpj)
         {
-            return $"{cnpj.TipoLogradouro} {cnpj.Logradouro}, nº {cnpj.Numero} {(!string.IsNullOrWhiteSpace(cnpj.Complemento) ? "-" + cnpj.Complemento : "")}";
+            return $"{cnpj.TipoLogradouro} {cnpj.Logradouro}, Nº {cnpj.Numero} {(!string.IsNullOrWhiteSpace(cnpj.Complemento) ? "- " + cnpj.Complemento : "")}";
         }
 
         private void mtxtTel_Enter(object sender, EventArgs e)
