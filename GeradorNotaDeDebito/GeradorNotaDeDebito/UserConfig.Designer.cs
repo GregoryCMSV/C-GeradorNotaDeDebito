@@ -64,7 +64,7 @@
             btnSalvar.Location = new Point(335, 513);
             btnSalvar.Name = "btnSalvar";
             btnSalvar.Size = new Size(95, 38);
-            btnSalvar.TabIndex = 10;
+            btnSalvar.TabIndex = 9;
             btnSalvar.Text = "Salvar";
             btnSalvar.UseVisualStyleBackColor = true;
             btnSalvar.Click += BtnSalvar_Click;
@@ -77,7 +77,7 @@
             btnCancelar.Location = new Point(452, 513);
             btnCancelar.Name = "btnCancelar";
             btnCancelar.Size = new Size(95, 38);
-            btnCancelar.TabIndex = 11;
+            btnCancelar.TabIndex = 10;
             btnCancelar.Text = "Cancelar";
             btnCancelar.UseVisualStyleBackColor = true;
             btnCancelar.Click += btnCancelar_Click;
@@ -87,7 +87,7 @@
             txtValor.Location = new Point(138, 479);
             txtValor.Name = "txtValor";
             txtValor.Size = new Size(199, 23);
-            txtValor.TabIndex = 9;
+            txtValor.TabIndex = 8;
             txtValor.TextChanged += txtValor_TextChanged;
             // 
             // label2
@@ -154,7 +154,7 @@
             mtxtTel.Mask = "(00) 90000-0000";
             mtxtTel.Name = "mtxtTel";
             mtxtTel.Size = new Size(130, 23);
-            mtxtTel.TabIndex = 5;
+            mtxtTel.TabIndex = 4;
             mtxtTel.Enter += mtxtTel_Enter;
             mtxtTel.Leave += mtxtTel_Leave;
             // 
@@ -165,7 +165,7 @@
             mtxtCEP.Mask = "00000-000";
             mtxtCEP.Name = "mtxtCEP";
             mtxtCEP.Size = new Size(130, 23);
-            mtxtCEP.TabIndex = 4;
+            mtxtCEP.TabIndex = 3;
             // 
             // lblCNPJ
             // 
@@ -254,7 +254,7 @@
             txtEndDestinatario.Location = new Point(133, 99);
             txtEndDestinatario.Name = "txtEndDestinatario";
             txtEndDestinatario.Size = new Size(305, 23);
-            txtEndDestinatario.TabIndex = 8;
+            txtEndDestinatario.TabIndex = 7;
             // 
             // txtRazaoDestinatario
             // 
@@ -271,7 +271,7 @@
             mtxtCNPJDestinatario.Mask = "AA\\.AAA\\.AAA/AAAA-00";
             mtxtCNPJDestinatario.Name = "mtxtCNPJDestinatario";
             mtxtCNPJDestinatario.Size = new Size(225, 23);
-            mtxtCNPJDestinatario.TabIndex = 7;
+            mtxtCNPJDestinatario.TabIndex = 5;
             mtxtCNPJDestinatario.Leave += mtxtCNPJDestinatario_Leave;
             // 
             // label10
